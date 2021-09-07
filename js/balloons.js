@@ -29,21 +29,40 @@
     });
 
     //unckeck/check all ballons
-    $("checkAll").click(function() {
+    $("#checkAll").click(function() {
         $("input:checkbox").not(this).prop("checked", this.checked);
 
     });
 
+    
+
     //hover
     $(".form-check-label").hover(function() {
-        $("#loadSeeker").css("color", ""),{
+        $("#hoverOver").css("color", $(this).data("color"));
+    },
             function() {
-                $("#loadSeeker").css("", "");
-            }
-        }
+                $("#hoverOver").css("color", "");
+            
+        
+    });
+
+    //checkbox color
+     // event listener for check/uncheck
+     $('#checkAll').on('change', function () {
+         $(".form-check-input").each(function (){
+        // make the image visible
+        $('#' + this.id + 'Img').css('visibility', 'visible')
+        // animate balloon in/out based on checkbox
+        $(this).is(':checked') ?
+         $('#' + this.id + 'Img').removeClass().addClass('animate__animated animate__bounceInDown') :
+         $('#' + this.id + 'Img').addClass('animate__animated animate__bounceOutUp');
     });
     
+
+    
 });
+
+
 
 
 
@@ -67,4 +86,6 @@ function randomSeeker(){
         var randomEntry = Math.floor(Math.random() * seekers.length);
 
         return seekers[randomEntry];
-};
+    }
+    
+});
